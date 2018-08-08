@@ -32,7 +32,7 @@ namespace csvGenerator
                 csv.NextRecord();
                 for (var i = 0; i < count; i++)
                 {
-                    csv.WriteField(i + "Oleshko,default.post@gmail.com,Ilya");
+                    csv.WriteField(i + "Oleshko," + i + "default.post@gmail.com," + i + "Ilya");
                     csv.NextRecord();
                 }
             }
@@ -49,7 +49,7 @@ namespace csvGenerator
                 csv.NextRecord();
                 for (var i = 0; i < count; i++)
                 {
-                    csv.WriteField(i + "Ilya,Oleshko,default.post@gmail.com");
+                    csv.WriteField(i + "Ilya," + i + "Oleshko," + i + "default.post@gmail.com");
                     csv.NextRecord();
                 }
             }
