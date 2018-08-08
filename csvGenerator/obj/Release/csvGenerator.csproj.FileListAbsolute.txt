@@ -1,0 +1,8 @@
+D:\StudioSolution\csvGenerator\csvGenerator\bin\Release\csvGenerator.exe.config
+D:\StudioSolution\csvGenerator\csvGenerator\bin\Release\csvGenerator.exe
+D:\StudioSolution\csvGenerator\csvGenerator\bin\Release\csvGenerator.pdb
+D:\StudioSolution\csvGenerator\csvGenerator\bin\Release\CsvHelper.dll
+D:\StudioSolution\csvGenerator\csvGenerator\bin\Release\CsvHelper.xml
+D:\StudioSolution\csvGenerator\csvGenerator\obj\Release\csvGenerator.exe
+D:\StudioSolution\csvGenerator\csvGenerator\obj\Release\csvGenerator.pdb
+D:\StudioSolution\csvGenerator\csvGenerator\obj\Release\csvGenerator.csprojResolveAssemblyReference.cache
