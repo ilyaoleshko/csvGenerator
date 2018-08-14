@@ -21,15 +21,18 @@ namespace csvGenerator
             }
         }
 
-        public static void GenerateChangePosition(int count)
+        public static void GenerateChangePosition(int count, bool headerBool)
         {
             using (TextWriter writer =
-                new StreamWriter(@"TestCsv\Default_parameters_Wich_header_Change_position.csv", false, Encoding.UTF8))
+                new StreamWriter(@"TestCsv\Default_parameters_" + CheckHeader(headerBool) + "_Change_position.csv", false, Encoding.UTF8))
             {
                 var csv = new CsvWriter(writer);
                 csv.Configuration.QuoteNoFields = true;
-                csv.WriteField("LastName,Email,FirstName");
-                csv.NextRecord();
+                if (headerBool)
+                {
+                    csv.WriteField("LastName,Email,FirstName");
+                    csv.NextRecord();
+                }
                 for (var i = 0; i < count; i++)
                 {
                     csv.WriteField(i + "Oleshko," + i + "default.post@gmail.com," + i + "Ilya");
@@ -38,15 +41,18 @@ namespace csvGenerator
             }
         }
 
-        public static void GenerateDefaultPosition(int count)
+        public static void GenerateDefaultPosition(int count, bool headerBool)
         {
             using (TextWriter writer =
-                new StreamWriter(@"TestCsv\Default_parameters_Wich_header_Default_position.csv", false, Encoding.UTF8))
+                new StreamWriter(@"TestCsv\Default_parameters_" + CheckHeader(headerBool) + "_Default_position.csv", false, Encoding.UTF8))
             {
                 var csv = new CsvWriter(writer);
                 csv.Configuration.QuoteNoFields = true;
-                csv.WriteField("FirstName,LastName,Email");
-                csv.NextRecord();
+                if (headerBool)
+                {
+                    csv.WriteField("FirstName,LastName,Email");
+                    csv.NextRecord();
+                }
                 for (var i = 0; i < count; i++)
                 {
                     csv.WriteField(i + "Ilya," + i + "Oleshko," + i + "default.post@gmail.com");
@@ -70,11 +76,27 @@ namespace csvGenerator
             }
         }
 
+        public static string CheckHeader(bool headerBool)
+        {
+        if (headerBool)
+            {
+                return "With_header";
+            }
+            else
+            {
+                return "Without_header";
+            }
+        }
+
         private static void Main()
         {
             const int count = 5;
-            GenerateDefaultPosition(count);
-            GenerateChangePosition(count);
+
+            GenerateDefaultPosition(count, true);
+            GenerateChangePosition(count, true);
+            GenerateDefaultPosition(count, false);
+            GenerateChangePosition(count, false);
+
             var i = SeparatorParameters.Separator.Count;
             while (i > 0)
             {
