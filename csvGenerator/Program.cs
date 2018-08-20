@@ -21,6 +21,21 @@ namespace csvGenerator
             }
         }
 
+        public static void Generate100(SeparatorParameters sep, EncodingParameters enc)
+        {
+            using (TextWriter writer =
+                new StreamWriter(@"TestCsv\" + enc.Title + "_" + sep.Title + "_NQ_100.csv", false, enc.Value))
+            {
+                var csv = new CsvWriter(writer);
+                csv.Configuration.QuoteNoFields = true;
+                for (var i = 0; i < 100; i++)
+                {
+                    csv.WriteField(i + "default.post@gmail.com" + sep.Value + i + "Ilya" + sep.Value + i + "Oleshko");
+                    csv.NextRecord();
+                }
+            }
+        }
+
         public static void GenerateChangePosition(int count, bool headerBool)
         {
             using (TextWriter writer =
@@ -50,12 +65,12 @@ namespace csvGenerator
                 csv.Configuration.QuoteNoFields = true;
                 if (headerBool)
                 {
-                    csv.WriteField("FirstName,LastName,Email");
+                    csv.WriteField("Email,FirstName,LastName");
                     csv.NextRecord();
                 }
                 for (var i = 0; i < count; i++)
                 {
-                    csv.WriteField(i + "Ilya," + i + "Oleshko," + i + "default.post@gmail.com");
+                    csv.WriteField(i + "default.post@gmail.com," + i + "Ilya," + i + "Oleshko");
                     csv.NextRecord();
                 }
             }
@@ -96,6 +111,8 @@ namespace csvGenerator
             GenerateChangePosition(count, true);
             GenerateDefaultPosition(count, false);
             GenerateChangePosition(count, false);
+
+            Generate100(SeparatorParameters.Separator[0], EncodingParameters.Encodng[0]);
 
             var i = SeparatorParameters.Separator.Count;
             while (i > 0)
