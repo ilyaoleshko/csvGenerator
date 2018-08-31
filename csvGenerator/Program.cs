@@ -9,7 +9,7 @@ namespace csvGenerator
         public static void Generate(SeparatorParameters sep, EncodingParameters enc, int count)
         {
             using (TextWriter writer =
-                new StreamWriter(@"TestCsv\" + enc.Title + "_" + sep.Title + "_NQ.csv", false, enc.Value))
+                new StreamWriter(@"TestCsv\" + enc.Title + "_" + sep.Title + ".csv", false, enc.Value))
             {
                 var csv = new CsvWriter(writer);
                 csv.Configuration.QuoteNoFields = true;
@@ -24,11 +24,11 @@ namespace csvGenerator
         public static void Generate100(SeparatorParameters sep, EncodingParameters enc)
         {
             using (TextWriter writer =
-                new StreamWriter(@"TestCsv\" + enc.Title + "_" + sep.Title + "_NQ_100.csv", false, enc.Value))
+                new StreamWriter(@"TestCsv\" + enc.Title + "_" + sep.Title + "_10000.csv", false, enc.Value))
             {
                 var csv = new CsvWriter(writer);
                 csv.Configuration.QuoteNoFields = true;
-                for (var i = 0; i < 100; i++)
+                for (var i = 0; i < 10000; i++)
                 {
                     csv.WriteField(i + "default.post@gmail.com" + sep.Value + i + "Ilya" + sep.Value + i + "Oleshko");
                     csv.NextRecord();
@@ -76,21 +76,6 @@ namespace csvGenerator
             }
         }
 
-        public static void GenerateWithDelimiter(SeparatorParameters sep, EncodingParameters enc, DelimiterParameters del, int count)
-        {
-            using (TextWriter writer =
-                new StreamWriter(@"TestCsv\" + enc.Title + "_" + sep.Title + "_" + del.Title + ".csv", false, Encoding.UTF8))
-            {
-                var csv = new CsvWriter(writer);
-                csv.Configuration.QuoteNoFields = true;
-                for (var i = 0; i < count; i++)
-                {
-                    csv.WriteField(i + "default.post@gmail.com" + sep.Value + del.Value + i + "Ilya" + del.Value + sep.Value + i + "Oleshko");
-                    csv.NextRecord();
-                }
-            }
-        }
-
         public static string CheckHeader(bool headerBool)
         {
         if (headerBool)
@@ -126,13 +111,6 @@ namespace csvGenerator
             {
                 j--;
                 Generate(SeparatorParameters.Separator[0], EncodingParameters.Encodng[j], count);
-            }
-
-            var k = DelimiterParameters.Delimiter.Count;
-            while (k > 0)
-            {
-                k--;
-                GenerateWithDelimiter(SeparatorParameters.Separator[0], EncodingParameters.Encodng[0], DelimiterParameters.Delimiter[k], count);
             }
         }
     }
