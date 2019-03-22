@@ -75,6 +75,7 @@ namespace csvGenerator
             GenerateN(10000);
             GenerateN(100000);
             GenerateN(1000000);
+            GenerateN(2000000);
 
             GenerateContacts(3000, true, googleBody, googleHead, "Google");
             GenerateContacts(3000, true, outlookBody, outlookHead, "Outlook");
